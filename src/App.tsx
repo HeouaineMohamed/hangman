@@ -6,9 +6,7 @@ import Keyboard from "./components/Keyboard";
 import HagmanWord from "./components/HagmanWord";
 
 function App() {
-  const [wordToGuess, setWordToGuess] = useState<string>(() => {
-    return words[Math.floor(Math.random() * words.length)];
-  });
+  const wordToGuess: string = words[Math.floor(Math.random() * words.length)];
 
   const [guessdLetters, setGuessdLetters] = useState<string[]>([]);
   const incorrectLetters = guessdLetters.filter(
@@ -45,7 +43,11 @@ function App() {
         {isWinner && "Winner!"} {isLoser && "you lose NiceTry"}
       </div>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HagmanWord guessedLetters={guessdLetters} text={wordToGuess} reveal={isLoser}/>
+      <HagmanWord
+        guessedLetters={guessdLetters}
+        text={wordToGuess}
+        reveal={isLoser}
+      />
       <Keyboard
         activeLetter={guessdLetters.filter((letter) =>
           wordToGuess.includes(letter)
